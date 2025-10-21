@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Year 12 Map</title>
+  <style>
+    body { margin: 0; font-family: system-ui, sans-serif; background:#f7f7f8; }
+    .wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
+    #vis { border-radius: 16px; background: white; padding: 12px; box-shadow: 0 6px 20px rgba(0,0,0,.07); }
+  </style>
+  <!-- Vega libraries (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Year 12 Map</h1>
+    <div id="vis"></div>
+  </div>
+
+  <script>
+    const specUrl = "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/year12_map.vl.json";
+    vegaEmbed("#vis", specUrl, { actions: { export: true, source: true, editor: true } })
+      .catch(err => {
+        document.getElementById('vis').innerHTML = "<p>Failed to load spec. Check the console for details.</p>";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
