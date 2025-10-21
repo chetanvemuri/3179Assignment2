@@ -17,11 +17,12 @@
 <body>
   <div class="wrap">
     <h1>Year 12 Map</h1>
+    <p>This choropleth uses your uploaded TopoJSON and CSV.</p>
     <div id="vis"></div>
   </div>
 
   <script>
-    const specUrl = "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/year12_map.vl.json";
+    const specUrl = "year12_map.vl.json"; // local file in the same folder
     vegaEmbed("#vis", specUrl, { actions: { export: true, source: true, editor: true } })
       .catch(err => {
         document.getElementById('vis').innerHTML = "<p>Failed to load spec. Check the console for details.</p>";
