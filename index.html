@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Year 12 Certification — Australia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Vega libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 24px; background: #fafafa; }
+    h1 { margin: 0 0 12px; font-size: 1.5rem; color: #222; }
+    #map { max-width: 980px; }
+    .note { color:#666; font-size:0.9rem; margin-top:10px; }
+  </style>
+</head>
+<body>
+  <h1>Year 12 Certification (%) by State / Territory</h1>
+  <div id="map"></div>
+  <p class="note">Hover to see values. Data join key: <code>STE_NAME21</code>.</p>
+
+  <script>
+    vegaEmbed('#map', 'year12_map.vl.json?v=2', {actions:false}).catch(console.error);
+  </script>
+</body>
+</html>
