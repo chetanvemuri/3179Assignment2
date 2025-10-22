@@ -5,7 +5,7 @@
   "height": 420,
   "projection": {"type": "equalEarth"},
   "config": {
-    "view": {"stroke": null}   // remove outer chart border
+    "view": {"stroke": null}
   },
   "layer": [
     {
@@ -60,3 +60,4 @@
     }
   ]
 }
+
