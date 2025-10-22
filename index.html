@@ -1,27 +1,29 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5.22.1"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.5.0"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.21.0"></script>
-  
-  <!-- CSS file -->
-  <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-
+  <meta charset="utf-8" />
+  <title>3179Assignment2</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>body{font-family:system-ui,Arial,sans-serif;margin:24px} #vis{max-width:1000px;margin:auto}</style>
 </head>
 <body>
-  
-<div id="choropleth_map"></div>
+  <h1>Completed Tertiary Education</h1>
+  <div id="vis"></div>
 
-<script type="text/javascript">
+  <script>
+    // If your Vega-Lite spec references the CSV/TopoJSON by relative path,
+    // keep the files in the repo root. Otherwise, use the raw links below.
+    const specUrl = "completed_tertiary_education.vg.json";
 
-  var spec2 = "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/completed_tertiary_education.vg.json";
-  vegaEmbed('#choropleth_map', spec2).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-  }).catch(console.error);
-</script>
-
+    vegaEmbed('#vis', specUrl, {actions:false})
+      .then(() => console.log('Loaded'))
+      .catch(err => {
+        document.getElementById('vis').innerText = 'Error loading visualization:\n' + err;
+        console.error(err);
+      });
+  </script>
 </body>
 </html>
