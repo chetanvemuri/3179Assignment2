@@ -11,72 +11,51 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <style>
+    :root{
+      --card-max: 860px;   /* max width for cards */
+      --chart-max: 720px;  /* max width for charts inside cards */
+    }
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #f7f9fc;
-      color: #111;
-      text-align: center;
+      background: #f7f9fc; color: #111; text-align: center;
     }
-
     header {
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 30px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: #fff; border-bottom: 1px solid #ddd;
+      padding: 30px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
+    h1 { font-size: 2rem; margin: 0; }
+    p.sub { color: #666; margin: 5px 0 0; }
 
-    h1 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    p.sub {
-      color: #666;
-      margin: 5px 0 0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
-    }
-
-    section {
-      margin: 40px 0;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
+    main { max-width: var(--card-max); margin: 40px auto; padding: 0 16px; }
+    section { margin: 40px 0; }
+    h2 { font-size: 1.5rem; margin-bottom: 20px; }
 
     .card {
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       padding: 24px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      margin: auto;
-      max-width: 850px;
+      margin: 0 auto;
+      max-width: var(--card-max);
+      overflow: hidden; /* prevent any overflow from charts */
     }
 
+    /* Chart containers: centered and width-capped */
     #vis, #gdpVis {
       width: 100%;
-      max-width: 700px; /* keeps it centered and prevents overflow */
+      max-width: var(--chart-max);
       margin: 0 auto;
-      min-height: 400px;
+      min-height: 360px;
     }
 
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
+    /* Make embedded SVG/canvas respect the cap */
+    .vega-embed, .vega-embed > div, .vega-embed svg, .vega-embed canvas {
+      max-width: var(--chart-max) !important;
+      width: 100% !important;
+      height: auto;
+      margin: 0 auto !important;
+      display: block;
     }
   </style>
 </head>
@@ -98,7 +77,7 @@
         This can be explored through tertiary education completion rates across countries.
       </p>
       <div class="card">
-        <div id="vis"></div>
+        <div id="vis" aria-label="Completed tertiary education visualisation"></div>
       </div>
       <p style="margin-top:7px;color:#666;">
         Figure 1. Percentage of people with tertiary education in different countries.
@@ -114,7 +93,7 @@
         Use the slider to explore different years.
       </p>
       <div class="card">
-        <div id="gdpVis"></div>
+        <div id="gdpVis" aria-label="Top 20 GDP per capita visualisation"></div>
       </div>
       <p style="margin-top:7px;color:#666;">
         Figure 2. Top 20 GDP per capita by year (World Bank data).
@@ -122,24 +101,32 @@
     </section>
   </main>
 
-  <!-- Load Vega-Lite visualisations -->
   <script>
-    // 1️⃣ Load tertiary education map
-    const tertiarySpec = "completed_tertiary_education.vg.json?v=15";
-    vegaEmbed("#vis", tertiarySpec, { actions: false })
-      .then(() => console.log("Tertiary education visualisation loaded"))
+    // Helper patch to force specs to fit the container (no overflow)
+    const responsivePatch = {
+      autosize: { type: "fit", contains: "padding" },
+      width: "container"
+      // You can also cap height here if you want, e.g. height: 520
+    };
+
+    // 1) Load tertiary education map (patch to be responsive)
+    vegaEmbed("#vis", "completed_tertiary_education.vg.json?v=17", {
+      actions: false,
+      patch: responsivePatch
+    }).then(() => console.log("Tertiary education vis loaded"))
       .catch(err => {
         document.getElementById('vis').innerHTML =
-          "<pre style='color:#b00020;'>Error loading tertiary education vis: " + err + "</pre>";
+          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading tertiary education vis:\n" + err + "</pre>";
       });
 
-    // 2️⃣ Load GDP per capita chart (centered and scaled)
-    const gdpSpec = "gdp_per_capita.json?v=1";
-    vegaEmbed("#gdpVis", gdpSpec, { actions: false })
-      .then(() => console.log("GDP per capita visualisation loaded"))
+    // 2) Load GDP per capita chart (patch to be responsive)
+    vegaEmbed("#gdpVis", "gdp_per_capita.json?v=4", {
+      actions: false,
+      patch: responsivePatch
+    }).then(() => console.log("GDP per capita vis loaded"))
       .catch(err => {
         document.getElementById('gdpVis').innerHTML =
-          "<pre style='color:#b00020;'>Error loading GDP vis: " + err + "</pre>";
+          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading GDP vis:\n" + err + "</pre>";
       });
   </script>
 </body>
