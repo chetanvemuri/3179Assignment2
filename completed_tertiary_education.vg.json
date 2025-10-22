@@ -2,8 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Completed Tertiary Education by Country",
   "width": 800,
-  "height": 400,
+  "height": 420,
   "projection": {"type": "equalEarth"},
+  "config": {
+    "view": {"stroke": null}   // remove outer chart border
+  },
   "layer": [
     {
       "data": {
@@ -14,7 +17,9 @@
         {
           "lookup": "properties.NAME",
           "from": {
-            "data": {"url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/Education%20by%20Country.csv"},
+            "data": {
+              "url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/Education%20by%20Country.csv"
+            },
             "key": "Country",
             "fields": ["Completed_Tertiary_Education"]
           }
@@ -40,17 +45,20 @@
     },
     {
       "data": {
-        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-        "format": {"type": "topojson", "mesh": "countries"}
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
       "mark": {
         "type": "geoshape",
         "fill": null,
         "stroke": "black",
         "strokeWidth": 1.2,
-        "strokeJoin": "round"
+        "strokeJoin": "round",
+        "strokeMiterLimit": 2,
+        "strokeOpacity": 1
       }
     }
   ]
 }
+
 
