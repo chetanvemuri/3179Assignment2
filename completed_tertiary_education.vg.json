@@ -33,7 +33,7 @@
           "scale": {
             "type": "threshold",
             "domain": [15, 30, 45],
-            "range": ["#FF0000", "#bdd7e7", "#6baed6", "#3182bd", "#08519c"]
+            "range": ["#d0e1f9", "#74a9cf", "#2b8cbe", "#045a8d", "#023858"]
           },
           "legend": {
             "title": "Completed Tertiary Education (%)",
@@ -65,6 +65,7 @@
     }
   ]
 }
+
 
 
 
