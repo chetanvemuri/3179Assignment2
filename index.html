@@ -129,8 +129,8 @@
           "<pre style='color:#b00020;'>Error loading tertiary education vis: " + err + "</pre>";
       });
 
-    // 2️⃣ Load GDP per capita chart from your repo JSON file
-    const gdpSpec = "gdp_per_capita.vg.json";
+    // 2️⃣ Load GDP per capita chart (corrected filename)
+    const gdpSpec = "gdp_per_capita.json?v=1";
     vegaEmbed("#gdpVis", gdpSpec, { actions: false })
       .then(() => console.log("GDP per capita visualisation loaded"))
       .catch(err => {
@@ -138,8 +138,5 @@
           "<pre style='color:#b00020;'>Error loading GDP vis: " + err + "</pre>";
       });
   </script>
-</body>
-</html>
-
 </body>
 </html>
