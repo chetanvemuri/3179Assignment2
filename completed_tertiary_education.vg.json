@@ -4,7 +4,14 @@
   "width": 850,
   "height": 450,
   "projection": {"type": "equalEarth"},
-  "config": {"view": {"stroke": null}},
+  "padding": {"left": 10, "top": 10, "right": 180, "bottom": 10},
+  "config": {
+    "view": {"stroke": null},
+    "legend": {
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    }
+  },
 
   "layer": [
     {
@@ -29,15 +36,16 @@
         "color": {
           "field": "Completed_Tertiary_Education",
           "type": "quantitative",
-          "scale": {"scheme": "blues"},
+          "scale": {
+            "type": "threshold",
+            "domain": [15, 30, 45],
+            "range": ["#deebf7", "#9ecae1", "#3182bd", "#08519c"]
+          },
           "legend": {
             "title": "Completed Tertiary Education (%)",
-            "orient": "bottom-right",
-            "direction": "horizontal",
-            "offset": 10,
-            "labelFontSize": 12,
-            "titleFontSize": 13,
-            "gradientLength": 150
+            "orient": "right",
+            "direction": "vertical",
+            "offset": 10
           }
         },
         "tooltip": [
@@ -46,6 +54,7 @@
         ]
       }
     },
+
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
@@ -57,8 +66,7 @@
         "stroke": "black",
         "strokeWidth": 1.2,
         "strokeJoin": "round",
-        "strokeMiterLimit": 2,
-        "strokeOpacity": 1
+        "strokeMiterLimit": 2
       }
     }
   ]
