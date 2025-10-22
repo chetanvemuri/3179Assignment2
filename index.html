@@ -1,151 +1,62 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Completed Tertiary Education — FIT3179 Assignment 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Vega Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #f7f9fc;
-      color: #111;
-      text-align: center;
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Completed Tertiary Education by Country",
+  "width": 800,
+  "height": 420,
+  "projection": {"type": "equalEarth"},
+  "config": {
+    "view": {"stroke": null}   // remove outer chart border
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/Education%20by%20Country.csv"
+            },
+            "key": "Country",
+            "fields": ["Completed_Tertiary_Education"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape"},
+      "encoding": {
+        "color": {
+          "field": "Completed_Tertiary_Education",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [15, 30, 45],
+            "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
+          },
+          "legend": {"title": "Completed Tertiary Education (%)"}
+        },
+        "tooltip": [
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "Completed_Tertiary_Education", "type": "quantitative", "title": "Tertiary Education (%)"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+      },
+      "mark": {
+        "type": "geoshape",
+        "fill": null,
+        "stroke": "black",
+        "strokeWidth": 1.2,
+        "strokeJoin": "round",
+        "strokeMiterLimit": 2,
+        "strokeOpacity": 1
+      }
     }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 30px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    p.sub {
-      color: #666;
-      margin: 5px 0 0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
-    }
-
-    section {
-      margin: 40px 0;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      padding: 24px;
-      display: inline-block;
-      text-align: center;
-    }
-
-    #vis {
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
-      min-height: 400px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      display: inline-block;
-      text-align: left;
-    }
-
-    li {
-      margin: 6px 0;
-      color: #444;
-    }
-
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <h1>Completed Tertiary Education</h1>
-    <p class="sub">FIT3179 Assignment 2 — Vega-Lite Visualisation</p>
-  </header>
-
-  <main>
-    <section>
-      <h2>Global Overview</h2>
-      <div class="card">
-        <div id="vis" role="img" aria-label="Completed tertiary education visualisation"></div>
-      </div>
-      <p style="margin-top:10px;color:#666;">
-        Data: <span class="mono">Education by Country.csv</span> • Map: <span class="mono">world_map.json</span>
-      </p>
-    </section>
-
-    <section>
-      <h2>Notes</h2>
-      <ul>
-        <li>Ensure all files (<span class="mono">completed_tertiary_education.vg.json</span>, <span class="mono">Education by Country.csv</span>, and <span class="mono">world_map.json</span>) are in the root of your repository.</li>
-        <li>Use relative paths or raw GitHub URLs inside your Vega-Lite spec for data sources.</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>If you see a blank page, check your browser console (F12) for any CORS or path errors.</p>
-    <p>Raw data links: <span class="mono">https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/…</span></p>
-  </footer>
-
-  <script>
-    const specUrl = "completed_tertiary_education.vg.json?v=7"; 
-    vegaEmbed("#vis", specUrl, { actions: false });
-      .then(() => console.log("Visualisation loaded successfully"))
-      .catch(err => {
-        console.error(err);
-        document.getElementById('vis').innerHTML =
-          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading visualisation:\n" + err + "</pre>";
-      });
-  </script>
-</body>
-</html>
+  ]
+}
