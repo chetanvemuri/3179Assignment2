@@ -1,12 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Completed Tertiary Education by Country",
-  "width": 800,
-  "height": 420,
+  "width": 850,
+  "height": 450,
   "projection": {"type": "equalEarth"},
-  "config": {
-    "view": {"stroke": null}
-  },
+  "config": {"view": {"stroke": null}},
+
   "layer": [
     {
       "data": {
@@ -30,12 +29,16 @@
         "color": {
           "field": "Completed_Tertiary_Education",
           "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [15, 30, 45],
-            "range": ["#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
-          },
-          "legend": {"title": "Completed Tertiary Education (%)"}
+          "scale": {"scheme": "blues"},
+          "legend": {
+            "title": "Completed Tertiary Education (%)",
+            "orient": "bottom-right",
+            "direction": "horizontal",
+            "offset": 10,
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "gradientLength": 150
+          }
         },
         "tooltip": [
           {"field": "properties.NAME", "type": "nominal", "title": "Country"},
@@ -45,14 +48,14 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+        "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+        "format": {"type": "topojson", "mesh": "countries"}
       },
       "mark": {
         "type": "geoshape",
         "fill": null,
         "stroke": "black",
-        "strokeWidth": 0.5,
+        "strokeWidth": 1.2,
         "strokeJoin": "round",
         "strokeMiterLimit": 2,
         "strokeOpacity": 1
@@ -60,6 +63,3 @@
     }
   ]
 }
-
-
-
