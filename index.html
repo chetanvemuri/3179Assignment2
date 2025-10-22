@@ -138,9 +138,8 @@
   </footer>
 
   <script>
-    const specUrl = "completed_tertiary_education.vg.json";
-
-    vegaEmbed("#vis", specUrl, { actions: false })
+    const specUrl = "completed_tertiary_education.vg.json?v=4"; 
+    vegaEmbed("#vis", specUrl, { actions: false });
       .then(() => console.log("Visualisation loaded successfully"))
       .catch(err => {
         console.error(err);
