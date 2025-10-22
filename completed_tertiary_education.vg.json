@@ -35,7 +35,10 @@
             "domain": [15, 30, 45],
             "range": ["#d4e4f7", "#7fb3e1", "#2b8cbe", "#0b559f"]
           },
-          "legend": {"title": "Completed Tertiary Education (%)"}
+          "legend": {
+            "title": "Completed Tertiary Education (%)"
+            "orient": "bottom"
+            "direction": "horizontal"}
         },
         "tooltip": [
           {"field": "properties.NAME", "type": "nominal", "title": "Country"},
@@ -60,6 +63,7 @@
     }
   ]
 }
+
 
 
 
