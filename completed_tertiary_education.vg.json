@@ -6,7 +6,6 @@
   "projection": {"type": "equalEarth"},
   "padding": {"left": 10, "top": 10, "right": 10, "bottom": 80},
   "config": { "view": { "stroke": null } },
-
   "layer": [
     {
       "data": {
@@ -64,4 +63,3 @@
     }
   ]
 }
-
