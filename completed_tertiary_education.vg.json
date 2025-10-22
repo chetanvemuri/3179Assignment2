@@ -5,7 +5,7 @@
   "height": 420,
   "projection": {"type": "equalEarth"},
   "config": {
-    "view": {"stroke": null}   // remove outer chart border
+    "view": {"stroke": null}
   },
   "layer": [
     {
@@ -52,7 +52,7 @@
         "type": "geoshape",
         "fill": null,
         "stroke": "black",
-        "strokeWidth": 1.2,
+        "strokeWidth": 0.5,
         "strokeJoin": "round",
         "strokeMiterLimit": 2,
         "strokeOpacity": 1
@@ -60,5 +60,6 @@
     }
   ]
 }
+
 
 
