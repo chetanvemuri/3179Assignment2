@@ -4,108 +4,38 @@
   <meta charset="utf-8" />
   <title>Completed Tertiary Education — FIT3179 Assignment 2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Vega Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <!-- Silence favicon 404 -->
+  <link rel="icon" href="data:,">
 
   <style>
+    :root { --maxw: 900px; }
     html, body {
-      margin: 0;
-      padding: 0;
+      margin: 0; padding: 0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: #f7f9fc;
-      color: #111;
-      text-align: center;
+      background: #f7f9fc; color: #111; text-align: center;
     }
-
-    header {
-      background: #ffffff;
-      border-bottom: 1px solid #ddd;
-      padding: 30px 0;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    h1 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    p.sub {
-      color: #666;
-      margin: 5px 0 0;
-    }
-
-    main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 16px;
-    }
-
-    section {
-      margin: 40px 0;
-    }
-
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
-
+    header { background:#fff; border-bottom:1px solid #eaeaea; padding:28px 12px; }
+    h1 { margin:0 0 6px; font-size: 1.9rem; }
+    .sub { margin:0; color:#666; }
+    main { max-width: var(--maxw); margin: 28px auto 60px; padding: 0 16px; }
+    section { margin: 28px 0; }
+    h2 { margin: 0 0 12px; font-size: 1.3rem; }
     .card {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-      padding: 24px;
-      display: inline-block;
-      text-align: center;
+      display: inline-block; text-align: center;
+      background:#fff; border:1px solid #eee; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 16px;
     }
-
-    #vis {
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
-      min-height: 400px;
+    #vis { width: 100%; max-width: 820px; min-height: 420px; margin: 0 auto; }
+    p.lead {
+      max-width: 820px; margin: 0 auto 22px;
+      font-size: 18px; line-height: 1.6; color:#333;
     }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      display: inline-block;
-      text-align: left;
-    }
-
-    li {
-      margin: 6px 0;
-      color: #444;
-    }
-
-    footer {
-      margin-top: 60px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
+    p.note { color:#666; margin-top: 10px; }
+    footer { color:#666; font-size: 0.9rem; margin: 40px 0 28px; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
   </style>
 </head>
-
 <body>
   <header>
     <h1>Completed Tertiary Education</h1>
@@ -115,39 +45,120 @@
   <main>
     <section>
       <h2>Introduction</h2>
-      <p style="max-width: 850px; margin: 0 auto 30px; font-size: 18px; line-height: 1.6; color: #333; text-align: center;">
-      Living in Australia, education is something which is commonly taken for granted under the assumption that it is easily accessible. 
-      However, when looking at data all around the world, it is clear that there are many factors that influence how accessible education 
-      services are to different populations in different countries. Tertiary education is a great measure of its accessibility, as it is 
-      reliant on both a country’s emphasis on the need for education as well as the number of opportunities that are given to its citizens 
-      to be able to strive for a tertiary education
-      </p>
-      <div class="card">
-        <div id="vis" role="img" aria-label="Completed tertiary education visualisation"></div>
-      </div>
-      <p style="margin-top:10px;color:#666;">
-        Percentage of Population who have completed Tertiary Education in different countries
+      <p class="lead">
+        Living in Australia, education is something which is commonly taken for granted under the assumption that it is easily accessible.
+        However, when looking at data all around the world, it is clear that there are many factors that influence how accessible education
+        services are to different populations in different countries. Tertiary education is a great measure of its accessibility, as it is
+        reliant on both a country’s emphasis on the need for education as well as the number of opportunities that are given to its citizens
+        to be able to strive for a tertiary education.
       </p>
     </section>
 
     <section>
-      <h2>Greeting</h2>
-      <ul>
-        <li>Hello my name is Chetan</li>
-      </ul>
+      <h2>Global Overview</h2>
+      <div class="card">
+        <div id="vis" role="img" aria-label="Completed tertiary education world map"></div>
+      </div>
+      <p class="note">
+        Data: <span class="mono">Education by Country.csv</span> • Map: <span class="mono">ne_110m_admin_0_countries.topojson</span>
+      </p>
+
+      <!-- Your custom line under the map -->
+      <p class="lead" style="margin-top: 24px;">Hello my name is Chetan</p>
     </section>
   </main>
 
-  <script>
-    const specUrl = "completed_tertiary_education.vg.json";
+  <footer>
+    If the map does not appear, hard-refresh the page (Ctrl/Cmd + Shift + R).
+  </footer>
 
-    vegaEmbed("#vis", specUrl, { actions: false })
-      .then(() => console.log("Visualisation loaded successfully"))
+  <!-- Vega libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <script>
+    // Inline Vega-Lite spec (no external JSON needed)
+    const spec = {
+      "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+      "title": "Completed Tertiary Education by Country",
+      "width": 800,
+      "height": 420,
+      "projection": {"type": "equalEarth"},
+      "padding": {"left": 10, "top": 10, "right": 10, "bottom": 80},
+      "config": {"view": {"stroke": null}},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+            "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+          },
+          "transform": [
+            {
+              "lookup": "properties.NAME",
+              "from": {
+                "data": {
+                  "url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/Education%20by%20Country.csv"
+                },
+                "key": "Country",
+                "fields": ["Completed_Tertiary_Education"]
+              }
+            }
+          ],
+          "mark": {"type": "geoshape"},
+          "encoding": {
+            "color": {
+              "field": "Completed_Tertiary_Education",
+              "type": "quantitative",
+              "scale": {
+                "type": "threshold",
+                "domain": [15, 30, 45],
+                "range": ["#deebf7", "#9ecae1", "#3182bd", "#062253"]  // darkest blue at high end
+              },
+              "legend": {
+                "title": "Completed Tertiary Education (%)",
+                "orient": "bottom",
+                "direction": "horizontal",
+                "offset": 20
+              }
+            },
+            "tooltip": [
+              {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+              {"field": "Completed_Tertiary_Education", "type": "quantitative", "title": "Tertiary Education (%)"}
+            ],
+            "opacity": {
+              "condition": {"test": "isValid(datum['Completed_Tertiary_Education'])", "value": 1},
+              "value": 0.3
+            }
+          }
+        },
+        {
+          "data": {
+            "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
+            "format": {"type": "topojson", "mesh": "countries"}
+          },
+          "mark": {
+            "type": "geoshape",
+            "fill": null,
+            "stroke": "black",
+            "strokeWidth": 1.0,
+            "strokeJoin": "round",
+            "strokeMiterLimit": 2
+          }
+        }
+      ]
+    };
+
+    vegaEmbed("#vis", spec, { actions: false })
+      .then(() => console.log("Inline spec loaded"))
       .catch(err => {
-        console.error(err);
+        console.error("Vega-Lite error:", err);
         document.getElementById('vis').innerHTML =
-          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading visualisation:\n" + err + "</pre>";
-      ]};
+          "<pre style='white-space:pre-wrap;color:#b00020;'>Failed to load visualisation:\n" +
+          (err && err.message ? err.message : err) + "</pre>";
+      });
   </script>
+</body>
+</html>
 </body>
 </html>
