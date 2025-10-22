@@ -61,4 +61,9 @@
         "fill": null,
         "stroke": "black",
         "strokeWidth": 1.0,
-        "strokeJoin": "round
+        "strokeJoin": "round",
+        "strokeMiterLimit": 2
+      }
+    }
+  ]
+}
