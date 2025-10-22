@@ -57,14 +57,18 @@
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       padding: 24px;
-      display: inline-block;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin: auto;
+      max-width: 850px;
     }
 
     #vis, #gdpVis {
       width: 100%;
-      max-width: 800px;
-      margin: auto;
+      max-width: 700px; /* keeps it centered and prevents overflow */
+      margin: 0 auto;
       min-height: 400px;
     }
 
@@ -129,7 +133,7 @@
           "<pre style='color:#b00020;'>Error loading tertiary education vis: " + err + "</pre>";
       });
 
-    // 2️⃣ Load GDP per capita chart (corrected filename)
+    // 2️⃣ Load GDP per capita chart (centered and scaled)
     const gdpSpec = "gdp_per_capita.json?v=1";
     vegaEmbed("#gdpVis", gdpSpec, { actions: false })
       .then(() => console.log("GDP per capita visualisation loaded"))
