@@ -52,7 +52,7 @@
         "type": "geoshape",
         "fill": null,
         "stroke": "black",
-        "strokeWidth": 1.2,
+        "strokeWidth": 0.5,
         "strokeJoin": "round",
         "strokeMiterLimit": 2,
         "strokeOpacity": 1
@@ -60,4 +60,5 @@
     }
   ]
 }
+
 
