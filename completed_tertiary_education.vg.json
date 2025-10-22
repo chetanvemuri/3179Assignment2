@@ -25,9 +25,9 @@
 
   "mark": {
     "type": "geoshape",
-    "stroke": "black",          // ← adds black border outline
-    "strokeWidth": 0.5,         // ← thickness of border
-    "fill": null                // ensures fill is controlled by color encoding
+    "stroke": "black",          
+    "strokeWidth": 0.5,         
+    "fill": null                
   },
 
   "encoding": {
@@ -47,4 +47,5 @@
     ]
   }
 }
+
 
