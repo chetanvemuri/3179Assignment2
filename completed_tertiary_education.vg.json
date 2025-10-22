@@ -38,7 +38,7 @@
           "legend": {
             "title": "Completed Tertiary Education (%)"
             "titleAlign": "center"
-            }
+            },
         },
         "tooltip": [
           {"field": "properties.NAME", "type": "nominal", "title": "Country"},
@@ -63,5 +63,6 @@
     }
   ]
 }
+
 
 
