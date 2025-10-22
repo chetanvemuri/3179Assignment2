@@ -37,6 +37,8 @@
           },
           "legend": {
             "title": "Completed Tertiary Education (%)",
+            "orient": "bottom",
+            "direction": "horizontal",
             "titleAlign": "center"
             }
         },
@@ -63,6 +65,7 @@
     }
   ]
 }
+
 
 
 
