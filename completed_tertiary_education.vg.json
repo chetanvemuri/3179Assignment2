@@ -4,13 +4,13 @@
   "width": 850,
   "height": 450,
   "projection": {"type": "equalEarth"},
-  "padding": {"left": 10, "top": 10, "right": 10, "bottom": 80},
-  "config": { "view": { "stroke": null } },
+  "config": {"view": {"stroke": null}},
+
   "layer": [
     {
       "data": {
         "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
       },
       "transform": [
         {
@@ -24,33 +24,32 @@
           }
         }
       ],
-      "mark": { "type": "geoshape" },
+      "mark": {"type": "geoshape"},
       "encoding": {
         "color": {
           "field": "Completed_Tertiary_Education",
           "type": "quantitative",
-          "scale": {
-            "type": "threshold",
-            "domain": [15, 30, 45],
-            "range": ["#deebf7", "#9ecae1", "#3182bd", "#08519c"]
-          },
+          "scale": {"scheme": "blues"},
           "legend": {
             "title": "Completed Tertiary Education (%)",
-            "orient": "bottom",
+            "orient": "bottom-right",
             "direction": "horizontal",
-            "offset": 20
+            "offset": 10,
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "gradientLength": 150
           }
         },
         "tooltip": [
-          { "field": "properties.NAME", "type": "nominal", "title": "Country" },
-          { "field": "Completed_Tertiary_Education", "type": "quantitative", "title": "Tertiary Education (%)" }
+          {"field": "properties.NAME", "type": "nominal", "title": "Country"},
+          {"field": "Completed_Tertiary_Education", "type": "quantitative", "title": "Tertiary Education (%)"}
         ]
       }
     },
     {
       "data": {
         "url": "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json",
-        "format": { "type": "topojson", "mesh": "countries" }
+        "format": {"type": "topojson", "mesh": "countries"}
       },
       "mark": {
         "type": "geoshape",
@@ -58,8 +57,11 @@
         "stroke": "black",
         "strokeWidth": 1.2,
         "strokeJoin": "round",
-        "strokeMiterLimit": 2
+        "strokeMiterLimit": 2,
+        "strokeOpacity": 1
       }
     }
   ]
 }
+}
+
