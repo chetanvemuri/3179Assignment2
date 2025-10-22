@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Completed Tertiary Education — FIT3179 Assignment 2</title>
+  <title>Tertiary Education & GDP per Capita — FIT3179 Assignment 2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <!-- Vega Libraries -->
@@ -61,24 +61,11 @@
       text-align: center;
     }
 
-    #vis {
+    #vis, #gdpVis {
       width: 100%;
       max-width: 800px;
       margin: auto;
       min-height: 400px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 auto;
-      display: inline-block;
-      text-align: left;
-    }
-
-    li {
-      margin: 6px 0;
-      color: #444;
     }
 
     footer {
@@ -87,66 +74,72 @@
       font-size: 0.9rem;
       color: #666;
     }
-
-    .mono {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      background: #eee;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
   </style>
 </head>
 
 <body>
   <header>
-    <h1>Tertiary Education Completion Rates Around the World</h1>
-    <p class="sub">FIT3179 Assignment 2 — Vega-Lite Visualisation</p>
+    <h1>Tertiary Education & GDP per Capita Around the World</h1>
+    <p class="sub">FIT3179 Assignment 2 — Vega-Lite Visualisations</p>
   </header>
 
   <main>
+    <!-- SECTION 1: Tertiary Education -->
     <section>
       <p style="margin-top:15px;color:#666;text-align: justify;">
         Living in Australia, it is easy to ignore the immense opportunities citizens are given to educate themselves and pursue a 
-        pathway unique to each individual. Having been born into such a system, these luxuries are often taken or granted under the 
+        pathway unique to each individual. Having been born into such a system, these luxuries are often taken for granted under the 
         assumption that this is just how the world operates. However, this couldn’t be further from the truth. Billions of people 
-        live in a world where their pathways and options are restricted to a much smaller sample size as they do not have the resources
-        to pursue such dreams. It can be fascinating to look into why this may be the case and which countries are advantaged and 
-        disadvantaged around the world. One way this can be observed is through tertiary education rates in different countries around
-        the globe.
+        live in a world where their pathways and options are restricted as they do not have the resources to pursue such dreams. 
+        This can be explored through tertiary education completion rates across countries.
       </p>
       <div class="card">
-        <div id="vis" role="img" aria-label="Completed tertiary education visualisation"></div>
+        <div id="vis"></div>
       </div>
       <p style="margin-top:7px;color:#666;">
-        Figure 1. Percentage of people with a Tertiary Education in different countries around the world.
+        Figure 1. Percentage of people with tertiary education in different countries.
       </p>
     </section>
 
+    <!-- SECTION 2: GDP per Capita -->
     <section>
-      <h2>Notes</h2>
-      <ul>
-      </ul>
+      <h2>Top 20 Countries by GDP per Capita (1960–2024)</h2>
+      <p style="color:#666;text-align: justify;">
+        Economic prosperity often goes hand-in-hand with access to quality education. 
+        The following visualisation shows how the top 20 countries by GDP per capita have changed over time. 
+        Use the slider to explore different years.
+      </p>
+      <div class="card">
+        <div id="gdpVis"></div>
+      </div>
+      <p style="margin-top:7px;color:#666;">
+        Figure 2. Top 20 GDP per capita by year (World Bank data).
+      </p>
     </section>
   </main>
 
+  <!-- Load Vega-Lite visualisations -->
   <script>
-    const specUrl = "completed_tertiary_education.vg.json?v=15";
-      vegaEmbed("#vis", specUrl, { actions: false })
-      .then(() => console.log("Visualisation loaded successfully"))
+    // 1️⃣ Load tertiary education map
+    const tertiarySpec = "completed_tertiary_education.vg.json?v=15";
+    vegaEmbed("#vis", tertiarySpec, { actions: false })
+      .then(() => console.log("Tertiary education visualisation loaded"))
       .catch(err => {
-        console.error(err);
         document.getElementById('vis').innerHTML =
-          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading visualisation:\n" + err + "</pre>";
+          "<pre style='color:#b00020;'>Error loading tertiary education vis: " + err + "</pre>";
+      });
+
+    // 2️⃣ Load GDP per capita chart from your repo JSON file
+    const gdpSpec = "gdp_bar_chart.vg.json";
+    vegaEmbed("#gdpVis", gdpSpec, { actions: false })
+      .then(() => console.log("GDP per capita visualisation loaded"))
+      .catch(err => {
+        document.getElementById('gdpVis').innerHTML =
+          "<pre style='color:#b00020;'>Error loading GDP vis: " + err + "</pre>";
       });
   </script>
+</body>
+</html>
+
 </body>
 </html>
