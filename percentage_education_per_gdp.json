@@ -1,0 +1,62 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Education Spending (% of GDP) — Top 20 by Latest Year",
+  "width": 800,
+  "height": 520,
+  "data": {
+    "url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/refs/heads/main/percentage_education_per_gdp.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {
+      "calculate": "datum['Country Name'] ? datum['Country Name'] : (datum['Country'] ? datum['Country'] : (datum['Rep.'] ? datum['Rep.'] : (datum['Entity'] ? datum['Entity'] : (datum['CountryName'] ? datum['CountryName'] : null))))",
+      "as": "CountryField"
+    },
+    {
+      "fold": [
+        "1970","1971","1972","1973","1974","1975","1976","1977","1978","1979",
+        "1980","1981","1982","1983","1984","1985","1986","1987","1988","1989",
+        "1990","1991","1992","1993","1994","1995","1996","1997","1998","1999",
+        "2000","2001","2002","2003","2004","2005","2006","2007","2008","2009",
+        "2010","2011","2012","2013","2014","2015","2016","2017","2018","2019",
+        "2020","2021","2022","2023","2024","2025"
+      ],
+      "as": ["Year", "PercentStr"]
+    },
+    {"calculate": "toNumber(datum.Year)", "as": "YearNum"},
+    {"calculate": "toNumber(datum.PercentStr)", "as": "Percent"},
+    {"filter": "datum.CountryField != null && isValid(datum.Percent) && isFinite(datum.Percent)"},
+    {
+      "aggregate": [{"op": "argmax", "field": "YearNum", "as": "latest"}],
+      "groupby": ["CountryField"]
+    },
+    {"calculate": "datum.latest ? datum.latest.Percent : null", "as": "LatestPercent"},
+    {"calculate": "datum.latest ? datum.latest.YearNum : null", "as": "LatestYear"},
+    {"filter": "isValid(datum.LatestPercent)"},
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "LatestPercent", "order": "descending"}]
+    },
+    {"filter": "datum.rank <= 20"}
+  ],
+  "mark": {"type": "point", "size": 90, "tooltip": true},
+  "encoding": {
+    "x": {
+      "field": "LatestPercent",
+      "type": "quantitative",
+      "title": "% of GDP on Education (latest)",
+      "axis": {"format": ".2f"}
+    },
+    "y": {
+      "field": "CountryField",
+      "type": "nominal",
+      "sort": "-x",
+      "title": "Country"
+    },
+    "tooltip": [
+      {"field": "CountryField", "type": "nominal", "title": "Country"},
+      {"field": "LatestPercent", "type": "quantitative", "title": "Percentage", "format": ".2f"},
+      {"field": "LatestYear", "type": "quantitative", "title": "Year"}
+    ]
+  }
+}
