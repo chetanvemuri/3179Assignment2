@@ -18,10 +18,10 @@
     .card, .card-wide { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:24px; margin:0 auto; overflow:hidden; }
     .card { max-width:860px; }
     .card-wide { max-width:1300px; }
-    #vis { width:100%; margin:0 auto; min-height:560px; max-width:860px; }
+    #vis, #vis-education-gdp { width:100%; margin:0 auto; min-height:560px; max-width:860px; }
     .dual-chart { display:flex; flex-wrap:nowrap; justify-content:space-between; align-items:flex-start; gap:40px; }
     .chart { flex:1; min-width:480px; max-width:100%; }
-    #vis .vega-embed svg { width:auto !important; height:auto !important; max-width:100%; }
+    #vis .vega-embed svg, #vis-education-gdp .vega-embed svg { width:auto !important; height:auto !important; max-width:100%; }
     .vega-embed, .vega-embed > div, .vega-embed svg, .vega-embed canvas { width:100% !important; height:auto; display:block; margin:0 auto !important; }
     @media (max-width:1000px){ .dual-chart{flex-wrap:wrap;} .chart{min-width:320px;} .card-wide{max-width:860px;} }
   </style>
@@ -33,6 +33,7 @@
   </header>
 
   <main>
+    <!-- Section 1 -->
     <section>
       <p style="margin-top:15px;color:#666;text-align: justify;">
         Living in Australia, it is easy to ignore the immense opportunities citizens are given to educate themselves and pursue a 
@@ -47,6 +48,7 @@
       <p style="margin-top:7px;color:#666;">Figure 1. Percentage of people with tertiary education in different countries.</p>
     </section>
 
+    <!-- Section 2 -->
     <section>
       <h2>Economic Prosperity & Education</h2>
       <p style="color:#666;text-align: justify;">
@@ -60,6 +62,19 @@
         </div>
       </div>
       <p style="margin-top:7px;color:#666;">Figure 2. Left: Top 20 GDP per capita by year. Right: Mean years of schooling (2000–2025).</p>
+    </section>
+
+    <!-- NEW SECTION 3 -->
+    <section>
+      <h2>Percentage of Education vs GDP</h2>
+      <p style="color:#666;text-align: justify;">
+        This final visualisation examines how much of a country's GDP is allocated toward education. It provides a comparative 
+        perspective on economic investment and its relation to national prosperity.
+      </p>
+      <div class="card">
+        <div id="vis-education-gdp" aria-label="Percentage of education spending vs GDP visualisation"></div>
+      </div>
+      <p style="margin-top:7px;color:#666;">Figure 3. Education spending as a percentage of GDP by country.</p>
     </section>
   </main>
 
@@ -82,6 +97,7 @@
       }
     }
 
+    // Load existing visualisations
     loadSpecInto(
       "#vis",
       "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/refs/heads/main/completed_tertiary_education.vg.json",
@@ -98,6 +114,13 @@
       "#schoolVis",
       "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/refs/heads/main/average_years_of_schooling.json",
       { forceFit: true, maxHeight: 620 }
+    );
+
+    // Load new "Percentage Education per GDP" visualisation
+    loadSpecInto(
+      "#vis-education-gdp",
+      "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/percentage_education_per_gdp.json",
+      { forceFit: true, height: 600 }
     );
   </script>
 </body>
