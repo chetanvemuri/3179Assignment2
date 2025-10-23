@@ -1,0 +1,48 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average Years of Schooling (1970–2025)",
+  "width": 800,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/mean_years_of_schooling.csv"
+  },
+  "params": [
+    {
+      "name": "CountrySelection",
+      "value": "Iceland",
+      "bind": {
+        "input": "select",
+        "name": "Select Country: ",
+        "options": [
+          "Iceland","South Korea","Ireland","Singapore","Germany","United States",
+          "Slovakia","Hong Kong","United Kingdom","Taiwan","Canada","Switzerland",
+          "Japan","Australia","Czechia","Cyprus","Malta","Lithuania","Malaysia","Estonia"
+        ]
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.Year >= 1970 && datum.Year <= 2025"},
+    {"filter": "datum.Entity == CountrySelection"}
+  ],
+  "mark": {"type": "line", "point": true, "strokeWidth": 2},
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "title": "Year",
+      "scale": {"domain": [1970, 2025]},
+      "axis": {"tickMinStep": 5}
+    },
+    "y": {
+      "field": "average years of schooling ",
+      "type": "quantitative",
+      "title": "Average Years of Schooling"
+    },
+    "tooltip": [
+      {"field": "Entity", "type": "nominal", "title": "Country"},
+      {"field": "Year", "type": "quantitative"},
+      {"field": "average years of schooling ", "type": "quantitative", "title": "Avg years", "format": ".2f"}
+    ]
+  }
+}
