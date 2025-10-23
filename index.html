@@ -8,14 +8,33 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
   <style>
-    html, body { margin:0; padding:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:#f7f9fc; color:#111; text-align:center; }
-    header { background:#fff; border-bottom:1px solid #ddd; padding:30px 0; box-shadow:0 2px 4px rgba(0,0,0,.05); }
+    html, body { 
+      margin:0; 
+      padding:0; 
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; 
+      background:#e7f2fb; /* light blue background */
+      color:#111; 
+      text-align:center; 
+    }
+    header { 
+      background:#fff; 
+      border-bottom:1px solid #ddd; 
+      padding:30px 0; 
+      box-shadow:0 2px 4px rgba(0,0,0,.05); 
+    }
     h1 { font-size:2rem; margin:0; }
     p.sub { color:#666; margin:5px 0 0; }
     main { max-width:1200px; margin:40px auto; padding:0 16px; }
     section { margin:40px 0; }
     h2 { font-size:1.5rem; margin-bottom:16px; }
-    .card, .card-wide { background:#fff; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); padding:24px; margin:0 auto; overflow:hidden; }
+    .card, .card-wide { 
+      background:#fff; 
+      border-radius:12px; 
+      box-shadow:0 2px 8px rgba(0,0,0,.08); 
+      padding:24px; 
+      margin:0 auto; 
+      overflow:hidden; 
+    }
     .card { max-width:860px; }
     .card-wide { max-width:1300px; }
     #vis, #vis-education-gdp { width:100%; margin:0 auto; min-height:560px; max-width:860px; }
@@ -33,7 +52,6 @@
   </header>
 
   <main>
-    <!-- Section 1 -->
     <section>
       <p style="margin-top:15px;color:#666;text-align: justify;">
         Living in Australia, it is easy to ignore the immense opportunities citizens are given to educate themselves and pursue a 
@@ -46,9 +64,14 @@
         <div id="vis" aria-label="Completed tertiary education visualisation"></div>
       </div>
       <p style="margin-top:7px;color:#666;">Figure 1. Percentage of people with tertiary education in different countries.</p>
+      <p style="margin-top:10px;color:#666;text-align: justify;">
+        Figure 1 above outlines the percentage of people who have completed tertiary education in different countries over the world. 
+        It is evident that areas such as Europe and North America have an extremely high rate of tertiary education amongst its citizens 
+        whereas areas such as Africa have a very low rate of Tertiary Education. There are many contributing factors which may explain 
+        the vast differences in these rates, some of which we will explore later in the page.
+      </p>
     </section>
 
-    <!-- Section 2 -->
     <section>
       <h2>Economic Prosperity & Education</h2>
       <p style="color:#666;text-align: justify;">
@@ -62,9 +85,18 @@
         </div>
       </div>
       <p style="margin-top:7px;color:#666;">Figure 2. Left: Top 20 GDP per capita by year. Right: Mean years of schooling (2000–2025).</p>
+      <p style="margin-top:10px;color:#666;text-align: justify;">
+        Some key factors which can influence the rates of Tertiary education can be seen in Figure 2, as seen above. On the left-hand side, 
+        the top 20 countries with the highest GDP per capita can be observed while on the right side, a selection of the top 20 countries 
+        with the highest average time in schooling is provided. Both of these measures are extremely important when assessing how educated 
+        a country may be. The GDP data provides an insight into how much resources are available to a nation which they can then use to 
+        provide its citizens with the opportunity for high levels of education. The right-hand side demonstrates the average years spent 
+        in school for the top 20 countries under the categories. This data can be particularly interesting as it depicts the level of 
+        importance that different communities put towards education and is a key indicator of education levels. It is interesting to observe 
+        that the countries with the highest percentage of people with tertiary education also appear at the top of these statistics.
+      </p>
     </section>
 
-    <!-- NEW SECTION 3 -->
     <section>
       <h2>Percentage of Education vs GDP</h2>
       <p style="color:#666;text-align: justify;">
@@ -75,6 +107,11 @@
         <div id="vis-education-gdp" aria-label="Percentage of education spending vs GDP visualisation"></div>
       </div>
       <p style="margin-top:7px;color:#666;">Figure 3. Education spending as a percentage of GDP by country.</p>
+      <p style="margin-top:10px;color:#666;text-align: justify;">
+        It is also important to note that even if a country doesn’t have the resources available to spend freely on education, they may still 
+        value its importance and allocate a higher portion of its resources towards it. The above data reveals the countries with the highest 
+        percentage of their GDP put towards education. The top countries once again appear at the top of the tertiary education percentage data.
+      </p>
     </section>
   </main>
 
@@ -97,7 +134,6 @@
       }
     }
 
-    // Load existing visualisations
     loadSpecInto(
       "#vis",
       "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/refs/heads/main/completed_tertiary_education.vg.json",
@@ -116,7 +152,6 @@
       { forceFit: true, maxHeight: 620 }
     );
 
-    // Load new "Percentage Education per GDP" visualisation
     loadSpecInto(
       "#vis-education-gdp",
       "https://raw.githubusercontent.com/chetanvemuri/3179Assignment2/main/percentage_education_per_gdp.json",
