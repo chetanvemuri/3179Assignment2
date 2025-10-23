@@ -6,12 +6,14 @@ The primary audience includes students and researchers studying international de
 **What:**
 
 The data used in the visualisation is presented below: 
+
 World Bank. (2024). Government expenditure on education, total (% of GDP) The World Bank Group.
 https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS
 UNESCO Institute for Statistics. (2024). Education statistics – Tertiary education attainment and expenditure United Nations Educational, Scientific and Cultural Organization.
 https://uis.unesco.org/en/topic/education
 World Bank. (2024). GDP per capita (current US$). The World Bank Group.
 https://data.worldbank.org/indicator/NY.GDP.PCAP.CD
+
 It is important to note that generative AI was used to help with the in the creation process and formatting of the visualization to give a polished and clean finish overall.
 
 **How: Visualisation Design Rationale:**
