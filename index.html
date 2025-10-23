@@ -5,7 +5,6 @@
   <title>Tertiary Education & GDP per Capita — FIT3179 Assignment 2</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Vega Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
@@ -39,7 +38,6 @@
     section { margin: 40px 0; }
     h2 { font-size: 1.5rem; margin-bottom: 16px; }
 
-    /* Default card (map section) stays the same */
     .card {
       background: #fff;
       border-radius: 12px;
@@ -50,22 +48,22 @@
       overflow: hidden;
     }
 
-    /* Wider card for dual charts */
     .card-wide {
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       padding: 24px;
       margin: 0 auto;
-      max-width: 1300px; /* widened for the bar + line chart */
+      max-width: 1300px;
       overflow: hidden;
     }
 
-    /* Chart containers */
     #vis {
       width: 100%;
       margin: 0 auto;
-      min-height: 360px;
+      min-height: 420px;
+      aspect-ratio: 16 / 9;
+      max-width: 860px;
     }
 
     .dual-chart {
@@ -82,7 +80,12 @@
       max-width: 100%;
     }
 
-    /* Ensure embedded charts resize nicely */
+    #vis .vega-embed svg {
+      width: auto !important;
+      height: auto !important;
+      max-width: 100%;
+    }
+
     .vega-embed, .vega-embed > div, .vega-embed svg, .vega-embed canvas {
       width: 100% !important;
       height: auto;
@@ -98,7 +101,7 @@
         min-width: 320px;
       }
       .card-wide {
-        max-width: 860px; /* fall back to normal width on smaller screens */
+        max-width: 860px;
       }
     }
   </style>
@@ -111,7 +114,6 @@
   </header>
 
   <main>
-    <!-- SECTION 1: Tertiary Education Map -->
     <section>
       <p style="margin-top:15px;color:#666;text-align: justify;">
         Living in Australia, it is easy to ignore the immense opportunities citizens are given to educate themselves and pursue a 
@@ -128,12 +130,11 @@
       </p>
     </section>
 
-    <!-- SECTION 2: GDP + Schooling (Wide Card) -->
     <section>
       <h2>Economic Prosperity & Education</h2>
       <p style="color:#666;text-align: justify;">
         This section compares the top 20 countries by GDP per capita (left) with their trends in mean years of schooling (right).
-        Both visualisations are displayed side by side in a wider layout for easier comparison.
+        Both visualisations are displayed side by side in a wider layout for better comparison.
       </p>
       <div class="card-wide">
         <div class="dual-chart">
@@ -148,22 +149,21 @@
   </main>
 
   <script>
-    // Tertiary education map
-    vegaEmbed("#vis", "completed_tertiary_education.vg.json?v=3", { actions: false })
-      .catch(err => {
-        document.getElementById('vis').innerHTML =
-          "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading tertiary education vis:\n" + err + "</pre>";
-      });
+    vegaEmbed("#vis", "completed_tertiary_education.vg.json?v=4", {
+      actions: false,
+      renderer: "canvas"
+    }).catch(err => {
+      document.getElementById('vis').innerHTML =
+        "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading tertiary education vis:\n" + err + "</pre>";
+    });
 
-    // GDP per capita bar chart
-    vegaEmbed("#gdpVis", "gdp_per_capita.json?v=3", { actions: false })
+    vegaEmbed("#gdpVis", "gdp_per_capita.json?v=4", { actions: false })
       .catch(err => {
         document.getElementById('gdpVis').innerHTML =
           "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading GDP vis:\n" + err + "</pre>";
       });
 
-    // Mean years of schooling line chart
-    vegaEmbed("#schoolVis", "average_years_of_schooling.json?v=3", { actions: false })
+    vegaEmbed("#schoolVis", "average_years_of_schooling.json?v=4", { actions: false })
       .catch(err => {
         document.getElementById('schoolVis').innerHTML =
           "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading schooling vis:\n" + err + "</pre>";
