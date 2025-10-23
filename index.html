@@ -31,7 +31,7 @@
     p.sub { color: #666; margin: 5px 0 0; }
 
     main {
-      max-width: 900px;
+      max-width: 1200px;
       margin: 40px auto;
       padding: 0 16px;
     }
@@ -45,7 +45,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
       padding: 24px;
       margin: 0 auto;
-      max-width: 860px;
+      max-width: 1200px; /* widened card */
       overflow: hidden;
     }
 
@@ -59,26 +59,33 @@
     /* Side-by-side charts row */
     .dual-chart {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-wrap: nowrap;
+      justify-content: space-between;
       align-items: flex-start;
-      gap: 20px;
-    }
-    .dual-chart > .chart {
-      flex: 1 1 380px;   /* keep current sizing feel */
-      max-width: 48%;    /* two per row on desktop */
-      min-width: 320px;  /* stack on narrow screens */
-    }
-    .chart {
-      margin: 0 auto;
+      gap: 40px; /* more breathing room between charts */
     }
 
-    /* Help the embedded SVG/canvas respect container width */
+    .chart {
+      flex: 1;
+      min-width: 500px;
+      max-width: 100%;
+    }
+
+    /* Help embedded SVG/canvas respect container width */
     .vega-embed, .vega-embed > div, .vega-embed svg, .vega-embed canvas {
       width: 100% !important;
       height: auto;
       display: block;
       margin: 0 auto !important;
+    }
+
+    @media (max-width: 1000px) {
+      .dual-chart {
+        flex-wrap: wrap;
+      }
+      .chart {
+        min-width: 300px;
+      }
     }
   </style>
 </head>
@@ -107,11 +114,12 @@
       </p>
     </section>
 
-    <!-- SECTION 2: GDP per Capita + Years of Schooling (side-by-side) -->
+    <!-- SECTION 2: GDP per Capita + Schooling -->
     <section>
       <h2>Economic Prosperity & Schooling</h2>
       <p style="color:#666;text-align: justify;">
-        Explore top GDP per capita by year (left) alongside the trend in mean years of schooling (right).
+        Explore the relationship between GDP per capita (left) and mean years of schooling (right). 
+        Both charts are presented in a wider format for better comparison.
       </p>
       <div class="card">
         <div class="dual-chart">
@@ -120,28 +128,28 @@
         </div>
       </div>
       <p style="margin-top:7px;color:#666;">
-        Figure 2. Left: Top 20 GDP per capita by selected year. Right: Mean years of schooling over time.
+        Figure 2. Left: Top 20 GDP per capita by year. Right: Average years of schooling over time.
       </p>
     </section>
   </main>
 
   <script>
-    // Tertiary education map (existing)
-    vegaEmbed("#vis", "completed_tertiary_education.vg.json?v=1", { actions: false })
+    // Load tertiary education visualisation
+    vegaEmbed("#vis", "completed_tertiary_education.vg.json?v=2", { actions: false })
       .catch(err => {
         document.getElementById('vis').innerHTML =
           "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading tertiary education vis:\n" + err + "</pre>";
       });
 
-    // Left: GDP per capita bar chart (your existing spec)
-    vegaEmbed("#gdpVis", "gdp_per_capita.json?v=1", { actions: false })
+    // Load GDP per capita bar chart
+    vegaEmbed("#gdpVis", "gdp_per_capita.json?v=2", { actions: false })
       .catch(err => {
         document.getElementById('gdpVis').innerHTML =
           "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading GDP vis:\n" + err + "</pre>";
       });
 
-    // Right: Average years of schooling line chart (your provided spec)
-    vegaEmbed("#schoolVis", "average_years_of_schooling.json?v=1", { actions: false })
+    // Load mean years of schooling line chart
+    vegaEmbed("#schoolVis", "average_years_of_schooling.json?v=2", { actions: false })
       .catch(err => {
         document.getElementById('schoolVis').innerHTML =
           "<pre style='color:#b00020;white-space:pre-wrap;'>Error loading schooling vis:\n" + err + "</pre>";
