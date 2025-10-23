@@ -12,7 +12,7 @@
       margin:0; 
       padding:0; 
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; 
-      background:#e7f2fb; /* light blue background */
+      background:#e7f2fb; /* Light blue background */
       color:#111; 
       text-align:center; 
     }
@@ -42,6 +42,20 @@
     .chart { flex:1; min-width:480px; max-width:100%; }
     #vis .vega-embed svg, #vis-education-gdp .vega-embed svg { width:auto !important; height:auto !important; max-width:100%; }
     .vega-embed, .vega-embed > div, .vega-embed svg, .vega-embed canvas { width:100% !important; height:auto; display:block; margin:0 auto !important; }
+    footer {
+      background:#d4e7f7;
+      padding:20px 10px;
+      font-size:0.9rem;
+      color:#333;
+      border-top:1px solid #ccc;
+    }
+    footer a {
+      color:#064789;
+      text-decoration:none;
+    }
+    footer a:hover {
+      text-decoration:underline;
+    }
     @media (max-width:1000px){ .dual-chart{flex-wrap:wrap;} .chart{min-width:320px;} .card-wide{max-width:860px;} }
   </style>
 </head>
@@ -114,6 +128,17 @@
       </p>
     </section>
   </main>
+
+  <footer>
+    <p><strong>Author:</strong> Chetan Vemuri 23/10/2025</p>
+    <p>Data Sources:</p>
+    <ul style="list-style:none;padding:0;">
+      <li><a href="https://www.kaggle.com/datasets/shahriarkabir/most-educated-country-in-the-world" target="_blank">Kaggle — Most Educated Country in the World</a></li>
+      <li><a href="https://data.worldbank.org/indicator/NY.GDP.PCAP.CD?most_recent_year_desc=true" target="_blank">World Bank — GDP per Capita (Current US$)</a></li>
+      <li><a href="https://ourworldindata.org/grapher/mean-years-of-schooling-long-run" target="_blank">Our World in Data — Mean Years of Schooling (Long Run)</a></li>
+      <li><a href="https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS?most_recent_value_desc=true" target="_blank">World Bank — Education Expenditure (% of GDP)</a></li>
+    </ul>
+  </footer>
 
   <script>
     async function loadSpecInto(selector, url, {forceFit=false, height=null, maxHeight=null} = {}) {
